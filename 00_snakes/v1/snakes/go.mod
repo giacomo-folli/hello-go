@@ -1,4 +1,4 @@
-module github.com/giacomo-folli/hello-go
+module github.com/giacomo-folli/hello-go/00_snakes
 
 go 1.22.0
 
