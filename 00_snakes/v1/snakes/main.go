@@ -21,8 +21,8 @@ func main() {
 	screen.SetStyle(defStyle)
 
 	snakeBody := SnakeBody{
-		X:      0,
-		Y:      0,
+		X:      5,
+		Y:      10,
 		Xspeed: 1,
 		Yspeed: 0,
 	}

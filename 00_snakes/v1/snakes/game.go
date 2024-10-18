@@ -26,7 +26,7 @@ func (g *Game) Run() {
 		// draw on the screen
 		g.Screen.SetContent(g.snakeBody.X, g.snakeBody.Y, ' ', nil, snakeStyle)
 		// time.Sleep
-		time.Sleep(100 * time.Millisecond)
+		time.Sleep(40 * time.Millisecond)
 		// draw the new frame
 		g.Screen.Show()
 	}
