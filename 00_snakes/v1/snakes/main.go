@@ -1,4 +1,4 @@
-package snakes
+package main
 
 import (
 	"log"

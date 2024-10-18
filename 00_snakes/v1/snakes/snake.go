@@ -1,4 +1,4 @@
-package snakes
+package main
 
 type SnakeBody struct {
 	X      int
