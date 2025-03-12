@@ -9,9 +9,25 @@ import (
 )
 
 func TestNewBlogPosts(t *testing.T) {
+	const (
+		first = `Title: Post 1
+Description: Description 1
+Tags: tdd, go
+---
+Hello
+World`
+		second = `Title: Post 1
+Description: Description 1
+Tags: rust, borrow-checker
+---
+B
+L
+M`
+	)
+
 	fs := fstest.MapFS{
-		"hello world.md":  {Data: []byte("Title: Post 1")},
-		"hello-world2.md": {Data: []byte("Title: Post 2")},
+		"hello world.md":  {Data: []byte(first)},
+		"hello-world2.md": {Data: []byte(second)},
 	}
 
 	posts, err := blogposts.NewPostsFromFS(fs)
@@ -19,10 +35,18 @@ func TestNewBlogPosts(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	got := posts[0]
-	want := blogposts.Post{Title: "Post 1"}
+	assertPost(t, posts[0], blogposts.Post{
+		Title:       "Post 1",
+		Description: "Description 1",
+		Tags:        []string{"tdd", "go"},
+		Body: `Hello
+World`,
+	})
+}
 
+func assertPost(t *testing.T, got blogposts.Post, want blogposts.Post) {
+	t.Helper()
 	if !reflect.DeepEqual(got, want) {
-		t.Errorf("got %+v, wanted %+v", got, want)
+		t.Errorf("got %+v, want %+v", got, want)
 	}
 }
